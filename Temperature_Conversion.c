@@ -155,21 +155,29 @@ int main(){
     // Gets the current scale from the user
     printf("Choose the current scale (1) Celsius, (2) Fahrenheit, (3) Kelvin: ");
     scanf("%d", &scale);
-    // Error checking: checks if the scale is kelvin and the temperature is negative
+    // Error checking: checks if the scale is kelvin and the temperature is negative or the scale choice is out of the range
     // If true, the program displays the error and the user is asked to try again
     // Otherwise, continues through the process
     if (temperature < 0 && scale == 3){
         printf("Invalid temperature value for Kelvin. Please try again.\n\n");
         main();
     }
+    if (scale < 1 || scale > 3){
+            printf("Invalid scale choices. Please try again.\n\n");
+            main();
+    }
     else{
         // Gets the conversion scale from the user
         printf("Convert to (1) Celsius, (2) Fahrenheit, (3) Kelvin: ");
         scanf("%d", &convert);
-        // Error checking: Checks if the conversion scale is the same as the current scale
+        // Error checking: Checks if the conversion scale is the same as the scale or the conversion choice is out of the range
         // If true, the program displays the error and the user is asked to try again
         // Otherwise, continues through the program
         if (scale == convert){
+            printf("Invalid conversion choices. Please try again.\n\n");
+            main();
+        }
+        if (convert < 1 || convert > 3){
             printf("Invalid conversion choices. Please try again.\n\n");
             main();
         }
