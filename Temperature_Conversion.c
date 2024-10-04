@@ -148,12 +148,12 @@ void output(float temperature, int scale, int convert){
 int main(){
     // Initalizing starting variables
     float temperature;
-    int scale, convert;
+    int scale, convert, check;
     // Gets the starting temperature from the user
-    printf("Enter the temperature: ");
+    check = printf("Enter the temperature: ");
     scanf("%f", &temperature);
     // Gets the current scale from the user
-    printf("Choose the current scale (1) Celsius, (2) Fahrenheit, (3) Kelvin: ");
+    check = printf("Choose the current scale (1) Celsius, (2) Fahrenheit, (3) Kelvin: ");
     scanf("%d", &scale);
     // Error checking: checks if the scale is kelvin and the temperature is negative or the scale choice is out of the range
     // If true, the program displays the error and the user is asked to try again
@@ -161,14 +161,16 @@ int main(){
     if (temperature < 0 && scale == 3){
         printf("Invalid temperature value for Kelvin. Please try again.\n\n");
         main();
+        return 0;
     }
     if (scale < 1 || scale > 3){
-            printf("Invalid scale choices. Please try again.\n\n");
-            main();
+        printf("Invalid scale choices. Please try again.\n\n");
+        main();
+        return 0;
     }
     else{
         // Gets the conversion scale from the user
-        printf("Convert to (1) Celsius, (2) Fahrenheit, (3) Kelvin: ");
+        check = printf("Convert to (1) Celsius, (2) Fahrenheit, (3) Kelvin: ");
         scanf("%d", &convert);
         // Error checking: Checks if the conversion scale is the same as the scale or the conversion choice is out of the range
         // If true, the program displays the error and the user is asked to try again
@@ -176,15 +178,17 @@ int main(){
         if (scale == convert){
             printf("Invalid conversion choices. Please try again.\n\n");
             main();
+            return 0;
         }
         if (convert < 1 || convert > 3){
             printf("Invalid conversion choices. Please try again.\n\n");
             main();
+            return 0;
         }
         else{
             // If there were no errors, the program outputs the results to the user
             output(temperature, scale, convert);
+            return 0;
         }
     }
-    return 0;
 }
